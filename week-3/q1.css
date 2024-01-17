@@ -1,0 +1,24 @@
+body {
+  font-family: 'Algerian', sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+#quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  color:blue;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+select, input[type="radio"], input[type="checkbox"] {
+  margin: 5px;
+}

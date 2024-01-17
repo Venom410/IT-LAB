@@ -1,0 +1,17 @@
+body {
+    font-family: 'Britanic Bold', sans-serif;
+    background-color: grey;
+    text-align: center;
+    margin: 50px;
+  }
+  
+  #clock {
+    font-size: 64;
+    margin-bottom: 20px;
+  }
+  
+  #greeting {
+    font-size: 30;
+    color: black;
+  }
+  
