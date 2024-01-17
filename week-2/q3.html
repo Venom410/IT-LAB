@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap Layout</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Top Part -->
+      <div class="col-12">
+        <div class="top-part">
+          <h2>Top Part</h2>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter something">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button">Search</button>
+            </div>
+          </div>
+          <span class="badge badge-danger">Alert</span>
+        </div>
+      </div>
+
+      <!-- Bottom Part -->
+      <div class="col-12 mt-3">
+        <div class="row">
+          <!-- Bottom Left Part -->
+          <div class="col-md-4">
+            <div class="bottom-section">
+              <div class="bg-primary p-3">
+                <h3>Bottom Left Part</h3>
+                <button class="btn btn-warning">Action 1</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Middle Part -->
+          <div class="col-md-4">
+            <div class="bottom-section">
+              <div class="bg-secondary p-3">
+                <h3>Bottom Middle Part</h3>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-info">Action 2</button>
+                  <button type="button" class="btn btn-info">Action 3</button>
+                  <button type="button" class="btn btn-info">Action 4</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Right Part -->
+          <div class="col-md-4">
+            <div class="bottom-section">
+              <div class="bg-danger p-3">
+                <h3>Bottom Right Part</h3>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter something">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
