@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #billForm {
+      text-align: center;
+      border: 2px solid black;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    select, input, button, label {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="billForm">
+    <label for="brand">Select Brand:</label>
+    <select id="brand">
+      <option value="HP">HP</option>
+      <option value="Nokia">Nokia</option>
+      <option value="Samsung">Samsung</option>
+      <option value="Motorola">Motorola</option>
+      <option value="Apple">Apple</option>
+    </select>
+
+    <br>
+
+    <label for="productType">Select Product Type:</label>
+    <input type="checkbox" class="product-checkbox" data-type="Mobile"> Mobile
+    <input type="checkbox" class="product-checkbox" data-type="Laptop"> Laptop
+
+    <br>
+
+    <label for="quantity">Enter Quantity:</label>
+    <input type="text" id="quantity">
+
+    <br>
+
+    <button id="addToBillButton">Add to Bill</button>
+    <button id="produceBillButton">Produce Bill</button>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Prices for each brand (assumed values for illustration)
+      var brandPrices = {
+        'HP': { 'Mobile': 150, 'Laptop': 300 },
+        'Nokia': { 'Mobile': 120, 'Laptop': 250 },
+        'Samsung': { 'Mobile': 180, 'Laptop': 350 },
+        'Motorola': { 'Mobile': 140, 'Laptop': 280 },
+        'Apple': { 'Mobile': 200, 'Laptop': 400 }
+      };
+
+      var basePrice = 100; // Assuming a base price of $100
+      var billItems = []; // Array to store selected items
+
+      $('#addToBillButton').click(function() {
+        addToBill();
+      });
+
+      $('#produceBillButton').click(function() {
+        produceBill();
+      });
+
+      function addToBill() {
+        var brand = $('#brand').val();
+        var quantity = $('#quantity').val();
+        var selectedProducts = getSelectedProducts();
+
+        // Ensure quantity is a valid integer
+        quantity = parseInt(quantity, 10);
+
+        if (!isNaN(quantity) && quantity > 0) {
+          // Add selected items to the billItems array
+          billItems.push({
+            brand: brand,
+            products: selectedProducts,
+            quantity: quantity
+          });
+
+          // Clear the form fields
+          $('#brand').val('');
+          $('.product-checkbox').prop('checked', false);
+          $('#quantity').val('');
+        } else {
+          alert('Please enter a valid quantity.');
+        }
+      }
+
+      function getSelectedProducts() {
+        var selectedProducts = [];
+        $('.product-checkbox:checked').each(function() {
+          selectedProducts.push($(this).data('type'));
+        });
+        return selectedProducts;
+      }
+
+      function calculateTotalAmount() {
+        var totalAmount = 0;
+
+        // Calculate total amount based on the items in the bill
+        billItems.forEach(function(item) {
+          var brand = item.brand;
+          var quantity = parseInt(item.quantity);
+          var selectedProducts = item.products;
+
+          // Check if the selected brand has prices
+          if (brandPrices.hasOwnProperty(brand)) {
+            var brandPrice = brandPrices[brand];
+
+            // Calculate additional cost based on selected products
+            var additionalCost = 0;
+            selectedProducts.forEach(function(productType) {
+              if (brandPrice.hasOwnProperty(productType)) {
+                additionalCost += brandPrice[productType];
+              }
+            });
+
+            totalAmount += (basePrice + additionalCost) * quantity;
+          } else {
+            alert('Invalid brand');
+          }
+        });
+
+        return totalAmount;
+      }
+
+      function produceBill() {
+        var totalAmount = calculateTotalAmount();
+        alert('Total Amount: $' + totalAmount);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #calculator {
+      text-align: center;
+      border: 2px solid grey;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, button {
+      font-size: 18px;
+      margin: 5px;
+      padding: 10px;
+    }
+
+    input {
+      width: 200px;
+    }
+
+    button {
+      width: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="calculator">
+    <input type="text" id="display" disabled>
+    <br>
+    <button class="digit" data-value="1">1</button>
+    <button class="digit" data-value="2">2</button>
+    <button class="digit" data-value="3">3</button>
+    <button class="operation" data-value="+">+</button>
+    <br>
+    <button class="digit" data-value="4">4</button>
+    <button class="digit" data-value="5">5</button>
+    <button class="digit" data-value="6">6</button>
+    <button class="operation" data-value="-">-</button>
+    <br>
+    <button class="digit" data-value="7">7</button>
+    <button class="digit" data-value="8">8</button>
+    <button class="digit" data-value="9">9</button>
+    <button class="operation" data-value="*">*</button>
+    <br>
+    <button class="digit" data-value="0">0</button>
+    <button id="clearButton">C</button>
+    <button id="calculateButton">=</button>
+    <button class="operation" data-value="/">/</button>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('.digit').click(function() {
+        appendToDisplay($(this).data('value'));
+      });
+
+      $('.operation').click(function() {
+        appendToDisplay($(this).data('value'));
+      });
+
+      $('#clearButton').click(function() {
+        clearDisplay();
+      });
+
+      $('#calculateButton').click(function() {
+        calculateResult();
+      });
+
+      function appendToDisplay(value) {
+        $('#display').val(function(_, currentValue) {
+          return currentValue + value;
+        });
+      }
+
+      function clearDisplay() {
+        $('#display').val('');
+      }
+
+      function calculateResult() {
+        var displayValue = $('#display').val();
+        try {
+          var result = eval(displayValue);
+          $('#display').val(result);
+        } catch (error) {
+          $('#display').val('Error');
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

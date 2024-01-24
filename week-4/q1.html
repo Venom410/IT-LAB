@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #container {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 20px auto;
+    }
+
+    table, th, td {
+      border: 1px solid blue;
+    }
+
+    th {
+      padding: 10px;
+      text-align: center;
+      background-color: pink;
+    }
+
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: red;
+    }
+
+    tr:nth-child(odd) {
+      background-color: green;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>Krish</td>
+          <td>Male</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Divyansh</td>
+          <td>Both</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Rinchen</td>
+          <td>Female</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <img src="img.jpg" alt="Your Image">
+
+    <button id="moveButton">Move Left</button>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#moveButton").click(function() {
+        $("#container").animate({ marginLeft: "-=100" }, 2000);
+      });
+    });
+  </script>
+
+</body>
+</html>
